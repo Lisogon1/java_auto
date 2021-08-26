@@ -1,23 +1,18 @@
 public class Point {
     public double x;
     public double y;
-    public double z;
-    public double v;
 
 
 
-public Point(double x, double y,double z,double v){
+public Point(double x, double y){
     this.x = x;
     this.y = y;
-    this.y = z;
-    this.y = v;
-
 
 }
 
-    public double distanceInPoint() {
+    public double distanceInPoint(Point p2) {
         double distInPoint;
-        distInPoint = Math.sqrt(Math.pow((this.z - this.x) ,2) + Math.pow((this.v - this.y) ,2));
+        distInPoint = Math.sqrt(Math.pow((p2.x - this.x) ,2) + Math.pow((p2.y - this.y) ,2));
         return distInPoint;
     }
 
