@@ -1,3 +1,7 @@
+package ru.stqa.pft.java.main;
+
+import ru.stqa.pft.java.main.Point;
+
 public class RunDistanceFunction {
     public static void main(String[] args) {
      Point p1 = new Point(3,5);
