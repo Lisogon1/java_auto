@@ -16,6 +16,7 @@ public class ApplicationManager{
     private GroupHelper groupHelper;
     private SessionHepler sessionHepler;
     private ContactHelper contactHelper;
+    private HelperBase helperBase;
 
     public void init() {
         wd = new ChromeDriver();
@@ -25,12 +26,10 @@ public class ApplicationManager{
         navigationHelper = new NavigationHelper(wd);
         sessionHepler = new SessionHepler(wd);
         contactHelper = new ContactHelper(wd);
+        helperBase = new HelperBase(wd);
         sessionHepler.login("admin", "secret");
     }
 
-    public void logoutUser() {
-      wd.findElement(By.linkText("Logout")).click();
-    }
 
     public void stop() {
         wd.quit();
@@ -46,12 +45,13 @@ public class ApplicationManager{
     }
 
 
-    public void returnToMainPage() {
-      wd.findElement(By.linkText("home")).click();
-    }
 
     public ContactHelper getContactHelper() {
         return contactHelper;
+    }
+
+    public HelperBase getHelperBase() {
+        return helperBase;
     }
 
     public GroupHelper getGroupHelper() {

@@ -24,6 +24,16 @@ public class HelperBase {
 
     }
 
+    public void returnToMainPage() {
+        wd.findElement(By.linkText("home")).click();
+    }
+    public void logoutUser() {
+        wd.findElement(By.linkText("Logout")).click();
+    }
+
+
+    public void acceptAlert() {wd.switchTo().alert().accept();}
+
     public void selectByList(By locator, String text) {
         click(locator);
         new Select(wd.findElement(locator)).selectByVisibleText(text);

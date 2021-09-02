@@ -26,9 +26,18 @@ public class ContactHelper extends HelperBase{
       type(By.name("byear"),contactData.getYearOfBirth());
     }
 
+    public void choiceContactOnId() {click(By.name("selected[]"));}
 
+    public void updateContactData() {click(By.name("update"));}
+
+    public void deleteContactButton() {
+        click(By.xpath("//input[@value='Delete']"));
+    }
 
     public void createNewContactButton() {
      click(By.xpath("//*[@id=\"nav\"]/ul/li[2]/a"));
     }
+
+
+    public void choiceContactModification() {click(By.cssSelector("#maintable > tbody > tr:nth-child(2) > td:nth-child(8) > a > img"));}
 }
