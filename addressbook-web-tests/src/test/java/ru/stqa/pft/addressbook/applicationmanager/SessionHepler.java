@@ -1,11 +1,12 @@
 package ru.stqa.pft.addressbook.applicationmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class SessionHepler extends HelperBase{
 
-    public SessionHepler(ChromeDriver wd) {
+    public SessionHepler(WebDriver wd) {
      super(wd);
     }
     public void login(String username, String password) {
