@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 public class ContactHelper extends HelperBase{
 
@@ -41,4 +42,15 @@ public class ContactHelper extends HelperBase{
 
 
     public void choiceContactModification() {click(By.cssSelector("#maintable > tbody > tr:nth-child(2) > td:nth-child(8) > a > img"));}
+
+    public void createContact(ContactData contact) {
+        createNewContactButton();
+        fillContactField(contact);
+        submitContactCreation();
+        returnToMainPage();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
 }
