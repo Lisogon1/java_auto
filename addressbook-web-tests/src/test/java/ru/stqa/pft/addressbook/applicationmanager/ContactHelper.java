@@ -2,10 +2,11 @@ package ru.stqa.pft.addressbook.applicationmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase{
 
@@ -41,7 +42,8 @@ public class ContactHelper extends HelperBase{
     }
 
 
-    public void choiceContactModification() {click(By.cssSelector("#maintable > tbody > tr:nth-child(2) > td:nth-child(8) > a > img"));}
+    public void choiceContactModification(int index) {
+        click(By.cssSelector("a[href=\"edit.php?id="+index+"\"]"));}
 
     public void createContact(ContactData contact) {
         createNewContactButton();
@@ -53,4 +55,27 @@ public class ContactHelper extends HelperBase{
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
     }
-}
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+        for (WebElement element : elements) {
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+            String lastName = element.findElement(By.xpath("td[2]")).getText();;
+            String firstName = element.findElement(By.xpath("td[3]")).getText();;
+            ContactData contact = new ContactData(id,firstName,null,lastName, null,null,null,null,null);
+            contacts.add(contact);
+        }
+        return contacts;
+    }
+
+    public  void selectContact(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
+    }
+
+    public int GetModificationContactId(int index) {
+        int idModContact = Integer.parseInt(wd.findElements(By.name("selected[]")).get(index).getAttribute("id"));
+    return idModContact;
+    }
+
+    }
