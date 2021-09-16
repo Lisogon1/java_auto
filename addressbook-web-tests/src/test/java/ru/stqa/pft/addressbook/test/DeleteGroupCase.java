@@ -17,11 +17,11 @@ public class DeleteGroupCase extends TestBase {
     if (! app.getGroupHelper().isThereAGroup()) {
       app.getGroupHelper().createGroup(new GroupData("testGr2", "testHeade22r", "testFoote1r"));
     }
-    List<ContactData> before = app.getContactHelper().getContactList();
+    List<GroupData> before = app.getGroupHelper().getGroupList();
     app.getGroupHelper().selectGroup(before.size() - 1);
     app.getGroupHelper().deleteSelectedGroups();
     app.getGroupHelper().returnToGroupPage();
-    List<ContactData> after = app.getContactHelper().getContactList();
+    List<GroupData> after = app.getGroupHelper().getGroupList();
     before.remove(before.size() -1);
       Assert.assertEquals(before, after);
   }
