@@ -6,13 +6,42 @@ public class ContactData {
     private String middleName;
     private String lastName;
     private String phoneMobile;
+    private String group;
+    private String phoneHome;
+    private String phoneWork;
+    private String allPhones;
     private String userEmail;
+    private String userEmail2;
+    private String userEmail3;
+    private String allEmail;
+    private String tableAddress;
+    private String userAddress;
     private String dayOfBirth;
     private String monthOfBirth;
     private String yearOfBirth;
 
     public ContactData withId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public ContactData withAddress(String userAddress) {
+        this.userAddress = userAddress;
+        return this;
+    }
+
+    public ContactData withAllEmail(String allEmail) {
+        this.allEmail = allEmail;
+        return this;
+    }
+
+    public ContactData withTableAddress(String tableAddress) {
+        this.tableAddress = tableAddress;
+        return this;
+    }
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
         return this;
     }
 
@@ -28,6 +57,19 @@ public class ContactData {
 
     public ContactData withLastName(String lastName) {
         this.lastName = lastName;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
+        this.group = group;
+        return this;
+    }
+    public ContactData withPhoneHome(String phoneHome) {
+        this.phoneHome = phoneHome;
+        return this;
+    }
+    public ContactData withPhoneWork(String phoneWork) {
+        this.phoneWork = phoneWork;
         return this;
     }
 
@@ -56,8 +98,39 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withUserEmail2(String userEmail2) {
+        this.userEmail2 = userEmail2;
+        return this;
+    }
 
+    public ContactData withUserEmail3(String userEmail3) {
+        this.userEmail3 = userEmail3;
+        return this;
+    }
 
+    public String getAllPhones() {
+        return allPhones;
+    }
+
+    public String getUserEmail2() {
+        return userEmail2;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    public String getUserEmail3() {
+        return userEmail3;
+    }
+
+    public String getAllEmail() {
+        return allEmail;
+    }
+
+    public String getTableAddress() {
+        return tableAddress;
+    }
 
     public int getId() {
         return id;
@@ -78,6 +151,19 @@ public class ContactData {
     public String getPhoneMobile() {
         return phoneMobile;
     }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public String getPhoneHome() {
+        return phoneHome;
+    }
+
+    public String getPhoneWork() {
+        return phoneWork;
+    }
+
 
     public String getUserEmail() {
         return userEmail;

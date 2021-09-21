@@ -1,14 +1,8 @@
 package ru.stqa.pft.addressbook.test;
 
-
-
-import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
-
-
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
@@ -20,13 +14,14 @@ public class DeleteGroupCase extends TestBase {
       app.group().create(new GroupData().withName("test1"));
     }
   }
+
   @Test
   public void testDeleteGroupCase() throws Exception {
     Groups before = app.group().all();
     GroupData deletedGroup = before.iterator().next();
     app.group().delete(deletedGroup);
+    assertThat(app.group().count(), equalTo(before.size() - 1));
     Groups after = app.group().all();
-    Assert.assertEquals(after.size(), before.size() -1);
     assertThat(after, equalTo(before.withOut(deletedGroup)));
   }
 

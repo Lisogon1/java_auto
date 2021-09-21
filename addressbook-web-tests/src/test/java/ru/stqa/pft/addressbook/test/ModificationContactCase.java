@@ -22,9 +22,9 @@ public class ModificationContactCase extends TestBase {
                 .withId(modifiedContact.getId())
                 .withFirstName("testFirstName").withLastName("testLastName");
         app.contact().modificationContact(modifiedContact, contact);
+        assertThat(app.contact().count(), equalTo(before.size()));
         Contacts after = app.contact().all();
         assertThat(after, equalTo(before.withOut(modifiedContact).withAdded(contact)));
-        Assert.assertEquals(after.size(), before.size());
     }
 }
 
