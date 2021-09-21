@@ -1,49 +1,63 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-    private int id;
+    private int id = Integer.MAX_VALUE;
     private String firstName;
     private String middleName;
     private String lastName;
-
-    @Override
-    public String toString() {
-        return "ContactData{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
-    }
-
     private String phoneMobile;
     private String userEmail;
     private String dayOfBirth;
     private String monthOfBirth;
     private String yearOfBirth;
 
-    public ContactData(String firstName, String middleName, String lastName, String phoneMobile, String userEmail, String dayOfBirth, String monthOfBirth, String yearOfBirth) {
-        this.id = Integer.MAX_VALUE;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.phoneMobile = phoneMobile;
-        this.userEmail = userEmail;
-        this.dayOfBirth = dayOfBirth;
-        this.monthOfBirth = monthOfBirth;
-        this.yearOfBirth = yearOfBirth;
+    public ContactData withId(int id) {
+        this.id = id;
+        return this;
     }
 
-    public ContactData(int id, String firstName, String middleName, String lastName, String phoneMobile, String userEmail, String dayOfBirth, String monthOfBirth, String yearOfBirth) {
-        this.id = id;
+    public ContactData withFirstName(String firstName) {
         this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.phoneMobile = phoneMobile;
-        this.userEmail = userEmail;
-        this.dayOfBirth = dayOfBirth;
-        this.monthOfBirth = monthOfBirth;
-        this.yearOfBirth = yearOfBirth;
+        return this;
     }
+
+    public ContactData withMiddleName(String middleName) {
+        this.middleName = middleName;
+        return this;
+    }
+
+    public ContactData withLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public ContactData withPhoneMobile(String phoneMobile) {
+        this.phoneMobile = phoneMobile;
+        return this;
+    }
+
+    public ContactData withUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+        return this;
+    }
+
+    public ContactData withDayOfBirth(String dayOfBirth) {
+        this.dayOfBirth = dayOfBirth;
+        return this;
+    }
+
+    public ContactData withMonthOfBirth(String monthOfBirth) {
+        this.monthOfBirth = monthOfBirth;
+        return this;
+    }
+
+    public ContactData withYearOfBirth(String yearOfBirth) {
+        this.yearOfBirth = yearOfBirth;
+        return this;
+    }
+
+
+
 
     public int getId() {
         return id;
@@ -81,6 +95,7 @@ public class ContactData {
         return yearOfBirth;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,17 +103,26 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
+        if (id != that.id) return false;
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-        return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
+        return middleName != null ? middleName.equals(that.middleName) : that.middleName == null;
     }
 
     @Override
     public int hashCode() {
-        int result = firstName != null ? firstName.hashCode() : 0;
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        int result = id;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (middleName != null ? middleName.hashCode() : 0);
         return result;
     }
 
-
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 
 }

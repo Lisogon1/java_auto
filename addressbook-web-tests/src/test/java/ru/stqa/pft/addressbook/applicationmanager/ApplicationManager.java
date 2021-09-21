@@ -1,14 +1,11 @@
 package ru.stqa.pft.addressbook.applicationmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
-import org.openqa.selenium.support.ui.Select;
-import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +15,7 @@ public class ApplicationManager{
 
     private NavigationHelper navigationHelper;
     private GroupHelper groupHelper;
-    private SessionHepler sessionHepler;
+    private SessionHelper sessionHelper;
     private ContactHelper contactHelper;
     private HelperBase helperBase;
     private String browser;
@@ -36,14 +33,14 @@ public class ApplicationManager{
             wd = new FirefoxDriver();
         }
 
-        wd.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/");
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
-        sessionHepler = new SessionHepler(wd);
+        sessionHelper = new SessionHelper(wd);
         contactHelper = new ContactHelper(wd);
         helperBase = new HelperBase(wd);
-        sessionHepler.login("admin", "secret");
+        sessionHelper.login("admin", "secret");
     }
 
 
@@ -62,7 +59,7 @@ public class ApplicationManager{
 
 
 
-    public ContactHelper getContactHelper() {
+    public ContactHelper contact() {
         return contactHelper;
     }
 
@@ -70,11 +67,11 @@ public class ApplicationManager{
         return helperBase;
     }
 
-    public GroupHelper getGroupHelper() {
+    public GroupHelper group() {
         return groupHelper;
     }
 
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
 }
