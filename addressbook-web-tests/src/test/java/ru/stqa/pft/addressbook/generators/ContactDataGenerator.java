@@ -63,7 +63,7 @@ public class ContactDataGenerator {
         for (ContactData contact : contacts) {
             writer.write(String.format("%s;%s;%s;%s;%s;\n",
                     contact.getFirstName(),
-                    contact.getMiddleName(),
+                    contact.getLastName(),
                     contact.getUserEmail(),
                     contact.getPhoneWork(),
                     contact.getTableAddress()));
@@ -77,8 +77,8 @@ public class ContactDataGenerator {
         for (int i = 0; i < count; i++) {
             contacts.add(new ContactData()
                     .withFirstName(String.format("FirstName%s", i))
-                    .withMiddleName(String.format("MiddleName%s", i))
-                    .withUserEmail(String.format("UserEmail%s", i))
+                    .withLastName(String.format("LastName%s", i))
+                    .withUserEmail(String.format("UserEmail%s@mail.ru", i))
                     .withPhoneWork("+79999999999")
                     .withTableAddress(String.format("TableAddress%s", i)));
         }
