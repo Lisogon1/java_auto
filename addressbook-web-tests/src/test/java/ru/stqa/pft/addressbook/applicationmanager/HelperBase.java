@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.File;
+
 
 public class HelperBase {
     public WebDriver wd;
@@ -29,6 +31,12 @@ public class HelperBase {
             }
         }
     }
+
+    protected void attach (By locator, File file) {
+        if (file != null) {
+                wd.findElement(locator).sendKeys(file.getAbsolutePath());
+            }
+        }
 
     public void returnToMainPage() {
         wd.findElement(By.linkText("home page")).click();
