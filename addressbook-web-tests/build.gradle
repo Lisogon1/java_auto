@@ -13,6 +13,39 @@ dependencies {
     implementation 'com.beust:jcommander:1.81'
     implementation 'com.google.code.gson:gson:2.8.8'
 }
-test {
-    useTestNG()
+
+task testGroups(type:Test) {
+    useTestNG{
+        suites 'src/test/resources/testng_groups.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+}
+
+task testContact(type:Test) {
+    useTestNG{
+        suites 'src/test/resources/testng_contact.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+}
+
+task testContacts(type:Test) {
+    useTestNG{
+        suites 'src/test/resources/testng_contacts.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
 }

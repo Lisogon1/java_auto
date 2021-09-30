@@ -102,7 +102,7 @@ public class ContactHelper extends HelperBase{
         deleteContactButton();
         acceptAlert();
         contactCache = null;
-        returnToMainPage();
+        returnToMainPageAfterContactDeleted();
     }
 
     public int count() {

@@ -41,6 +41,11 @@ public class HelperBase {
     public void returnToMainPage() {
         wd.findElement(By.linkText("home page")).click();
     }
+
+    public void returnToMainPageAfterContactDeleted() {
+        wd.findElement(By.linkText("home")).click();
+    }
+
     public void logoutUser() {
         wd.findElement(By.linkText("Logout")).click();
     }
