@@ -12,6 +12,10 @@ dependencies {
     implementation 'org.hamcrest:hamcrest:2.2'
     implementation 'com.beust:jcommander:1.81'
     implementation 'com.google.code.gson:gson:2.8.8'
+    implementation 'org.hibernate:hibernate-core:5.5.7.Final'
+    implementation 'mysql:mysql-connector-java:8.0.26'
+    implementation 'ch.qos.logback:logback-classic:1.1.5'
+    implementation 'junit:junit:4.0'
 }
 
 task testGroups(type:Test) {

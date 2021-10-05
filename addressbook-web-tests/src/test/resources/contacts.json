@@ -2,15 +2,9 @@
   {
     "firstName": "FirstName0",
     "lastName": "LastName0",
+    "phoneMobile": "+79999999999",
+    "phoneHome": "+89999999999",
     "phoneWork": "+79999999999",
-    "userEmail": "UserEmail0@mail.ru",
-    "tableAddress": "TableAddress0"
-  },
-  {
-    "firstName": "FirstName1",
-    "lastName": "LastName1",
-    "phoneWork": "+79999999999",
-    "userEmail": "UserEmail1@mail.ru",
-    "tableAddress": "TableAddress1"
+    "userEmail": "UserEmail0@mail.ru"
   }
 ]

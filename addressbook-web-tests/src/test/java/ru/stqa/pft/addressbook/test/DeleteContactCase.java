@@ -12,14 +12,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class DeleteContactCase extends TestBase{
         @Test
         public void deleteContactTest() {
-            if (! app.contact().isThereAContact()) {
-                app.contact().createContact(new ContactData().withFirstName("testFirstName").withLastName("testLastName"));
+            if (app.db().contacts().size() == 0) {
+                app.contact().createContact(new ContactData().withFirstName("testModFirstName").withLastName("testModLastName").withPhoneHome("8999999999")
+                        .withPhoneMobile("").withPhoneWork("").withUserEmail(""));
             }
-            Contacts before = app.contact().all();
+            Contacts before = app.db().contacts();
             ContactData deletedContact = before.iterator().next();
             app.contact().deleteContact(deletedContact);
             assertThat(app.contact().count(), equalTo(before.size() - 1));
-            Contacts after = app.contact().all();
+            Contacts after = app.db().contacts();
             assertThat(after, equalTo(before.withOut(deletedContact)));
     }
 

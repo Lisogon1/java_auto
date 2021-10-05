@@ -1,42 +1,73 @@
 package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 
+@Entity
+@Table(name="addressbook")
 public class ContactData {
+
+    @Id
+    @Column(name = "id")
     private int id = Integer.MAX_VALUE;
     @Expose
+    @Column(name = "firstName")
     private String firstName;
+    @Transient
     private String middleName;
     @Expose
+    @Column(name = "lastname")
     private String lastName;
+    @Type(type = "text")
+    @Column(name = "mobile")
+    @Expose
     private String phoneMobile;
+    @Transient
     private String group;
+    @Column(name = "home")
+    @Type(type = "text")
+    @Expose
     private String phoneHome;
     @Expose
+    @Column(name = "work")
+    @Type(type = "text")
     private String phoneWork;
+    @Transient
     private String allPhones;
     @Expose
+    @Column(name = "email")
+    @Type(type = "text")
     private String userEmail;
+    @Transient
     private String userEmail2;
+    @Transient
     private String userEmail3;
+    @Transient
     private String allEmail;
     @Expose
+    @Transient
     private String tableAddress;
+    @Transient
     private String userAddress;
+    @Transient
     private String dayOfBirth;
+    @Transient
     private String monthOfBirth;
+    @Transient
     private String yearOfBirth;
-    private File  photo;
+    @Transient
+    private String  photo;
 
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
@@ -211,14 +242,22 @@ public class ContactData {
 
         if (id != that.id) return false;
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-        return middleName != null ? middleName.equals(that.middleName) : that.middleName == null;
+        if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
+        if (phoneMobile != null ? !phoneMobile.equals(that.phoneMobile) : that.phoneMobile != null) return false;
+        if (phoneHome != null ? !phoneHome.equals(that.phoneHome) : that.phoneHome != null) return false;
+        if (phoneWork != null ? !phoneWork.equals(that.phoneWork) : that.phoneWork != null) return false;
+        return userEmail != null ? userEmail.equals(that.userEmail) : that.userEmail == null;
     }
 
     @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (middleName != null ? middleName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (phoneMobile != null ? phoneMobile.hashCode() : 0);
+        result = 31 * result + (phoneHome != null ? phoneHome.hashCode() : 0);
+        result = 31 * result + (phoneWork != null ? phoneWork.hashCode() : 0);
+        result = 31 * result + (userEmail != null ? userEmail.hashCode() : 0);
         return result;
     }
 
@@ -228,6 +267,10 @@ public class ContactData {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", phoneMobile='" + phoneMobile + '\'' +
+                ", phoneHome='" + phoneHome + '\'' +
+                ", phoneWork='" + phoneWork + '\'' +
+                ", userEmail='" + userEmail + '\'' +
                 '}';
     }
 
