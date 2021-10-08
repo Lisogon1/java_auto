@@ -4,7 +4,10 @@ import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.swing.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="addressbook")
@@ -25,8 +28,6 @@ public class ContactData {
     @Column(name = "mobile")
     @Expose
     private String phoneMobile;
-    @Transient
-    private String group;
     @Column(name = "home")
     @Type(type = "text")
     @Expose
@@ -61,9 +62,21 @@ public class ContactData {
     @Transient
     private String  photo;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<GroupData>();
+
+    public Groups getGroups() {
+        return new Groups(groups);
+    }
 
     public File getPhoto() {
         return new File(photo);
+    }
+
+    public ContactData inGroup(GroupData group) {
+        groups.add(group);
+        return this;
     }
 
     public ContactData withPhoto(File photo) {
@@ -111,10 +124,7 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withGroup(String group) {
-        this.group = group;
-        return this;
-    }
+
     public ContactData withPhoneHome(String phoneHome) {
         this.phoneHome = phoneHome;
         return this;
@@ -203,9 +213,6 @@ public class ContactData {
         return phoneMobile;
     }
 
-    public String getGroup() {
-        return group;
-    }
 
     public String getPhoneHome() {
         return phoneHome;
@@ -246,7 +253,8 @@ public class ContactData {
         if (phoneMobile != null ? !phoneMobile.equals(that.phoneMobile) : that.phoneMobile != null) return false;
         if (phoneHome != null ? !phoneHome.equals(that.phoneHome) : that.phoneHome != null) return false;
         if (phoneWork != null ? !phoneWork.equals(that.phoneWork) : that.phoneWork != null) return false;
-        return userEmail != null ? userEmail.equals(that.userEmail) : that.userEmail == null;
+        if (userEmail != null ? !userEmail.equals(that.userEmail) : that.userEmail != null) return false;
+        return groups != null ? groups.equals(that.groups) : that.groups == null;
     }
 
     @Override
@@ -258,6 +266,7 @@ public class ContactData {
         result = 31 * result + (phoneHome != null ? phoneHome.hashCode() : 0);
         result = 31 * result + (phoneWork != null ? phoneWork.hashCode() : 0);
         result = 31 * result + (userEmail != null ? userEmail.hashCode() : 0);
+        result = 31 * result + (groups != null ? groups.hashCode() : 0);
         return result;
     }
 
@@ -271,6 +280,7 @@ public class ContactData {
                 ", phoneHome='" + phoneHome + '\'' +
                 ", phoneWork='" + phoneWork + '\'' +
                 ", userEmail='" + userEmail + '\'' +
+                ", groups='" + groups + '\'' +
                 '}';
     }
 

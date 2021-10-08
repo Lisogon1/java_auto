@@ -1,10 +1,13 @@
 package ru.stqa.pft.addressbook.applicationmanager;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.HashSet;
@@ -21,12 +24,20 @@ public class ContactHelper extends HelperBase{
       click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-    public void fillContactField(ContactData contactData) {
+    public void fillContactField(ContactData contactData, boolean creation) {
       type(By.name("firstname"), contactData.getFirstName());
       type(By.name("middlename"),contactData.getMiddleName());
       type(By.name("lastname"),contactData.getLastName());
       type(By.name("mobile"),contactData.getPhoneMobile());
       type(By.name("email"),contactData.getUserEmail());
+      if (creation) {
+          if (contactData.getGroups().size() > 0) {
+              Assert.assertTrue(contactData.getGroups().size() == 1);
+              new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getGroupName());
+          }
+      } else {
+          Assert.assertFalse(isElementPresent(By.name("new_group")));
+      }
       type(By.name("byear"),contactData.getYearOfBirth());
       type(By.name("home"),contactData.getPhoneHome());
       type(By.name("work"),contactData.getPhoneWork());
@@ -47,9 +58,14 @@ public class ContactHelper extends HelperBase{
     public void choiceContactModification(int id) {
         click(By.cssSelector(String.format("a[href='edit.php?id=%s']", id)));}
 
+    public void choiceContactOnTable(int id) {
+        click(By.id(String.valueOf(id)));
+    }
+
+
     public void createContact(ContactData contact) {
         createNewContactButton();
-        fillContactField(contact);
+        fillContactField(contact, true);
         submitContactCreation();
         contactCache = null;
         returnToMainPage();
@@ -83,8 +99,6 @@ public class ContactHelper extends HelperBase{
     }
 
 
-
-
     public  void selectContactById(int id) {
         wd.findElement(By.cssSelector("input[value='"+id+"']")).click();
     }
@@ -92,7 +106,7 @@ public class ContactHelper extends HelperBase{
 
     public void modificationContact(ContactData modifiedContact, ContactData contact) {
         choiceContactModification(modifiedContact.getId());
-        fillContactField(contact);
+        fillContactField(contact, false);
         updateContactData();
         contactCache = null;
         returnToMainPage();
@@ -129,5 +143,20 @@ public class ContactHelper extends HelperBase{
     }
 
 
+    public void addContactToGroup(ContactData addedContact, GroupData group) {
+        choiceContactOnTable(addedContact.getId());
+        wd.findElement(By.name("to_group")).click();
+        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getGroupName());
+        click(By.name("add"));
+    }
 
-}
+    public void removeContactFromGroup(ContactData addedContact, GroupData group) {
+        wd.findElement(By.name("group")).click();
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getGroupName());
+        choiceContactOnTable(addedContact.getId());
+        wd.findElement(By.name("remove")).click();
+    }
+
+
+
+    }
