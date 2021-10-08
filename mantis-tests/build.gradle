@@ -1,0 +1,14 @@
+apply plugin: 'java'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    implementation 'org.hamcrest:hamcrest:2.2'
+
+}

@@ -6,20 +6,6 @@
       <GradleProjectSettings>
         <option name="delegatedBuild" value="true" />
         <option name="testRunner" value="PLATFORM" />
-        <option name="distributionType" value="LOCAL" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/addressbook-web-test" />
-        <option name="gradleJvm" value="1.8 (2)" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$/addressbook-web-test" />
-          </set>
-        </option>
-        <option name="resolveExternalAnnotations" value="false" />
-        <option name="useQualifiedModuleNames" value="true" />
-      </GradleProjectSettings>
-      <GradleProjectSettings>
-        <option name="delegatedBuild" value="true" />
-        <option name="testRunner" value="PLATFORM" />
         <option name="disableWrapperSourceDistributionNotification" value="true" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/addressbook-web-tests" />
@@ -27,6 +13,17 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/addressbook-web-tests" />
+          </set>
+        </option>
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/matis-tests" />
+        <option name="gradleJvm" value="1.8 (2)" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/matis-tests" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
