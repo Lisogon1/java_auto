@@ -23,6 +23,8 @@ public class DbHelper {
                 sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
 
             }
+
+
             public Groups groups() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();

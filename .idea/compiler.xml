@@ -5,6 +5,8 @@
       <module name="addressbook-web-test" target="1.8" />
       <module name="addressbook-web-test.main" target="1.8" />
       <module name="addressbook-web-test.test" target="1.8" />
+      <module name="matis-tests.main" target="1.8" />
+      <module name="matis-tests.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.mantis.appmanager.ApplicationManager;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -25,10 +26,12 @@ public class TestBase {
     @BeforeSuite
     public void setUp() throws Exception {
         app.init();
+        app.ftp().upload(new File("src/test/resources/config_defaults_inc.php"), "config_defaults_inc.php", "config_defaults_inc.php.back");
     }
 
     @AfterSuite
     public void tearDown() throws Exception {
+        app.ftp().restore("config_defaults_inc.php.back","config_defaults_inc.php");
         app.stop();
     }
 

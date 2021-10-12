@@ -10,5 +10,26 @@ dependencies {
     testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
     implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     implementation 'org.hamcrest:hamcrest:2.2'
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+    implementation 'commons-net:commons-net:3.8.0'
+    implementation 'ru.lanwen.verbalregex:java-verbal-expressions:1.8'
+    implementation 'ch.qos.logback:logback-classic:1.1.5'
+    implementation 'org.hibernate:hibernate-core:5.5.7.Final'
+    implementation 'mysql:mysql-connector-java:8.0.26'
+    implementation 'org.subethamail:subethasmtp:3.1.7'
+}
 
+task testGroups(type:Test) {
+    useTestNG{
+        suites 'src/test/resources/testng.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('verifyUI')) {
+        systemProperty 'verifyUI', "${verifyUI}"
+    }
 }
