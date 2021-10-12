@@ -10,9 +10,7 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -157,6 +155,11 @@ public class ContactHelper extends HelperBase{
         wd.findElement(By.name("remove")).click();
     }
 
-
-
+    public boolean examinationAddContactToGroup(ContactData contact, Groups groups) {
+       if (contact.getGroups().size() == groups.size()) {
+           return false;
+       }
+        return true;
     }
+
+}

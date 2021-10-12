@@ -43,9 +43,6 @@ public class Contacts extends ForwardingSet<ContactData> {
         return contacts;
     }
 
-    public Contacts withContId(ContactData contact) {
-        Contacts contacts = new Contacts(this);
-        return contacts;
-    }
+
 }
 
