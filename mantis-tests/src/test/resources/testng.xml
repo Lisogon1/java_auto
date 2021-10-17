@@ -2,9 +2,9 @@
 
 <suite name="Suite1" verbose="1" >
     <test name="Tests" >
+        <parameter name="getIssueId" value="0000001" />
         <classes>
-            <class name="ru.stqa.pft.mantis.tests.LoginTests" />
+            <class name="ru.stqa.pft.mantis.tests.SoapTests" />
         </classes>
     </test>
-
 </suite>

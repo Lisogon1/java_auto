@@ -34,7 +34,7 @@ public class RegistrationTests extends TestBase {
         app.registration().finish(username,confirmationLink, password);
         assertTrue(app.newSession().login(username,password));
     }
-    
+
     @AfterMethod(alwaysRun = true)
     public void afterMailServer() {
         app.mail().stop();
