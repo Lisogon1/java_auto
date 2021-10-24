@@ -7,9 +7,9 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.testng/testng
     testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
 }
+
 test {
     useTestNG()
 }
